@@ -17,13 +17,14 @@ public class Author {
     public void addReading(Reading reading) {
         if (!papers.contains(reading)) {
             papers.add(reading);
-            reading.setAuthor(this);
+            reading.addAuthor(this);
         }
     }
 
     public void removeReading(Reading reading) {
         if (papers.contains(reading)) {
             papers.remove(reading);
+            reading.removeAuthor(this);
         }
     }
 
