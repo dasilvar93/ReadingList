@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Reading {
+public class Reading extends Readable {
 
     String title;
     List<Author> authors = new ArrayList<>();
@@ -24,6 +24,7 @@ public class Reading {
     public String getTitle() {
         return this.title;
     }
+
     //MODIFIES: this, author
     //EFFECTS: if author is null, sets author and adds this reading to authors papers list. If there is an author, it
     //         removes the Reading from that authors papers list then sets new author and adds reading to its paper list
@@ -56,6 +57,7 @@ public class Reading {
     public LocalDate getPublicationDate() {
         return this.publicationDate;
     }
+
     //MODIFIES: this
     //EFFECTS: removes all current authors and replaces them with given author
     public void changeAuthors(Author author){
@@ -74,6 +76,8 @@ public class Reading {
             addAuthor(a);
         }
     }
+
+
 
     @Override
     public boolean equals(Object o) {
