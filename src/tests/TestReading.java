@@ -1,4 +1,4 @@
-package model.tests;
+package tests;
 
 import model.Author;
 import model.Reading;
