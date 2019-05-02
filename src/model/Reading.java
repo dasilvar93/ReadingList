@@ -47,6 +47,7 @@ public class Reading extends Readable {
     public List<Author> getAuthors() {
         return Collections.unmodifiableList(authors);
     }
+
     //MODIFIES: this
     //EFFECTS: sets publication date
     public void setPublicationDate(LocalDate pubDate) {
