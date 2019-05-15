@@ -20,6 +20,6 @@ public class CitationParser {
 //    }
 
     private static String removeQuotes(String str) {
-       return str.substring(2, str.length());
+       return str.substring(2);
     }
 }

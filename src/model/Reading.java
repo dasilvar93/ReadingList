@@ -1,7 +1,11 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static model.Status.NOT_STARTED;
 
 public class Reading extends Readable {
 
@@ -9,15 +13,18 @@ public class Reading extends Readable {
     List<Author> authors = new ArrayList<>();
     LocalDate publicationDate;
     String publication;
+    Status status;
 
     public Reading(String title, Author author) {
         this.title = title;
         this.addAuthor(author);
+        this.status = NOT_STARTED;
     }
 
     public Reading(String title, List<Author> authors) {
         this.title = title;
         this.authors = authors;
+        this.status = NOT_STARTED;
     }
 
     //EFFECTS: returns title of reading
@@ -45,7 +52,7 @@ public class Reading extends Readable {
 
     //EFFECTS: returns Authors of reading
     public List<Author> getAuthors() {
-        return Collections.unmodifiableList(authors);
+        return authors;
     }
 
     //MODIFIES: this
@@ -76,6 +83,17 @@ public class Reading extends Readable {
         for (Author a: authorsAdd) {
             addAuthor(a);
         }
+    }
+
+    //EFFECTS: returns status
+    public Status getStatus() {
+        return this.status;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Changes current status
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
 
