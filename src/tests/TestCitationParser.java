@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static model.factory.AuthorFactory.findAuthor;
 import static model.factory.ReadingFactory.findReading;
-import static model.parsers.CitationParser.parseMLA;
+import static model.parsers.CitationParser.parseMlaArticle;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCitationParser {
@@ -17,12 +17,11 @@ public class TestCitationParser {
     @Test
     void testParserMLA() {
         testAuthor = findAuthor("Duvall, John N");
-        testReading = findReading("The (Super)Marketplace of Images: Television as Unmediated Mediation in DeLillo's White Noise", testAuthor);
+        testReading = findReading("Duvall, John N.  The (Super)Marketplace of Images: Television as Unmediated Mediation in DeLillo's White Noise.");
 
-        Reading testParsed = parseMLA("Duvall, John N. \"The (Super)Marketplace of Images: Television as Unmediated Mediation in DeLillo's White Noise.\" Arizona Quarterly, vol. 50, no. 3, 1994, pp. 127-53.");
+        Reading testParsed = parseMlaArticle("Duvall, John N. \"The (Super)Marketplace of Images: Television as Unmediated Mediation in DeLillo's White Noise.\" Arizona Quarterly, vol. 50, no. 3, 1994, pp. 127-53.");
 
-        assertEquals(testReading.getTitle(), testParsed.getTitle());
-        assertEquals(testReading.getAuthors().contains(testAuthor), testParsed.getAuthors().contains(testAuthor));
+        assertEquals(testReading.getDescription(), testParsed.getDescription());
         assertEquals(testReading, testParsed);
     }
 }

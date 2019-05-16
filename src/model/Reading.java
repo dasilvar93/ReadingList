@@ -14,6 +14,7 @@ public class Reading extends Readable {
     LocalDate publicationDate;
     String publication;
     Status status;
+    String description;
 
     public Reading(String title, Author author) {
         this.title = title;
@@ -24,6 +25,11 @@ public class Reading extends Readable {
     public Reading(String title, List<Author> authors) {
         this.title = title;
         this.authors = authors;
+        this.status = NOT_STARTED;
+    }
+
+    public Reading(String description){
+        this.description = description;
         this.status = NOT_STARTED;
     }
 
@@ -96,21 +102,29 @@ public class Reading extends Readable {
         this.status = status;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reading reading = (Reading) o;
-        return title.equals(reading.title) &&
-                authors.equals(reading.authors) &&
+        return Objects.equals(title, reading.title) &&
+                Objects.equals(authors, reading.authors) &&
                 Objects.equals(publicationDate, reading.publicationDate) &&
-                Objects.equals(publication, reading.publication);
+                Objects.equals(publication, reading.publication) &&
+                status == reading.status &&
+                Objects.equals(description, reading.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, authors, publicationDate, publication);
+        return Objects.hash(title, authors, publicationDate, publication, status, description);
     }
 }
